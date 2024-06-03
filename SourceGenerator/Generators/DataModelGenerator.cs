@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SourceGenerator.Generators
 {
@@ -42,8 +43,18 @@ namespace SourceGenerator.Generators
         private ImmutableArray<string> GetClassNamesFromDatabase()
         {
             Log("Fetching class names...");
-            var classNames = new List<string> { "Test", "Teeest" };
-            return classNames.ToImmutableArray();
+            using var connection = new NpgsqlConnection(PostgresConnectionString);
+            connection.Open();
+
+            var db = new QueryFactory(connection, new PostgresCompiler());
+            var query = new Query("testclasses").Select("name");
+
+            var classNames = db.Get<string>(query).ToImmutableArray();
+            return classNames;
+
+            //Log("Fetching class names...");
+            //var classNames = new List<string> { "Test", "Teeest" };
+            //return classNames.ToImmutableArray();
         }
 
         private GeneratedSource GenerateClassSource(string className)

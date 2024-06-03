@@ -7,7 +7,6 @@ using SqlKata.Compilers;
 using SqlKata.Execution;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
@@ -38,18 +37,6 @@ namespace SourceGenerator.Generators
 
         private ImmutableArray<string> GetClassNamesFromDatabase()
         {
-            #region SQL SERVER
-            //using var connection = new SqlConnection(MSSQLConnectionString);
-            //connection.Open();
-
-            //var db = new QueryFactory(connection, new SqlServerCompiler());
-            //var query = new Query("testclasses").Select("Name");
-
-            //var classNames = db.Get<string>(query).ToImmutableArray();
-            //return classNames;
-            #endregion
-
-            #region POSTGRESQL
             using var connection = new NpgsqlConnection(PostgresConnectionString);
             connection.Open();
 
@@ -58,12 +45,9 @@ namespace SourceGenerator.Generators
 
             var classNames = db.Get<string>(query).ToImmutableArray();
             return classNames;
-            #endregion
 
-            #region HARDCODED LIST
-            //var classNames = new List<string> { "Apple", "Water", "Air" };
+            //var classNames = new List<string> {"Test", "Fuck" };
             //return classNames.ToImmutableArray();
-            #endregion
         }
 
         //public GeneratedSource GenerateDataModelSource(string entityName)

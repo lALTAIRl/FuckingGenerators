@@ -3,19 +3,22 @@ using Microsoft.CodeAnalysis.Text;
 using Npgsql;
 using SourceGenerator.Models;
 using SqlKata;
+using SqlKata.Compilers;
 using SqlKata.Execution;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+
 
 namespace SourceGenerator.Generators
 {
     [Generator]
     public class DataModelGenerator : IIncrementalGenerator
     {
-        private const string ConnectionString = "Host=localhost;Port=5432;Database=pgtestdata;Username=postgres;Password=password";
-
+        private const string PostgresConnectionString = "Host=localhost;Port=5432;Database=pgtestdata;Username=postgres;Password=password";
+        private const string MSSQLConnectionString = "Data Source=.;Initial Catalog=testDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public void Initialize(IncrementalGeneratorInitializationContext context)
         {
             var classProvider = context.CompilationProvider.Select((compilation, cancellationToken) =>
@@ -35,17 +38,32 @@ namespace SourceGenerator.Generators
 
         private ImmutableArray<string> GetClassNamesFromDatabase()
         {
-            //using var connection = new NpgsqlConnection(ConnectionString);
+            #region SQL SERVER
+            //using var connection = new SqlConnection(MSSQLConnectionString);
             //connection.Open();
 
-            //var db = new QueryFactory(connection, new SqlKata.Compilers.PostgresCompiler());
+            //var db = new QueryFactory(connection, new SqlServerCompiler());
             //var query = new Query("testclasses").Select("Name");
 
             //var classNames = db.Get<string>(query).ToImmutableArray();
             //return classNames;
+            #endregion
 
-            var classNames = new List<string> { "Apple", "Water", "Air" };
-            return classNames.ToImmutableArray();
+            #region POSTGRESQL
+            using var connection = new NpgsqlConnection(PostgresConnectionString);
+            connection.Open();
+
+            var db = new QueryFactory(connection, new PostgresCompiler());
+            var query = new Query("testclasses").Select("name");
+
+            var classNames = db.Get<string>(query).ToImmutableArray();
+            return classNames;
+            #endregion
+
+            #region HARDCODED LIST
+            //var classNames = new List<string> { "Apple", "Water", "Air" };
+            //return classNames.ToImmutableArray();
+            #endregion
         }
 
         //public GeneratedSource GenerateDataModelSource(string entityName)

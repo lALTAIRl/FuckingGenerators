@@ -5,11 +5,11 @@ using SourceGenerator.Models;
 using SqlKata;
 using SqlKata.Compilers;
 using SqlKata.Execution;
-using System.Collections.Generic;
+using System;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SourceGenerator.Generators
 {
@@ -79,6 +79,9 @@ namespace GeneratedClasses
         private void Log(string message)
         {
             System.Diagnostics.Debug.WriteLine($"[DataModelGenerator] {message}");
+            Console.WriteLine($"[DataModelGenerator] {message}");
+            Trace.WriteLine($"[DataModelGenerator] {message}");
+            
         }
     }
 }

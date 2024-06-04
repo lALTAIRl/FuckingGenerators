@@ -37,17 +37,17 @@ namespace SourceGenerator.Generators
 
         private ImmutableArray<string> GetClassNamesFromDatabase()
         {
-            using var connection = new NpgsqlConnection(PostgresConnectionString);
-            connection.Open();
+            //using var connection = new NpgsqlConnection(PostgresConnectionString);
+            //connection.Open();
 
-            var db = new QueryFactory(connection, new PostgresCompiler());
-            var query = new Query("testclasses").Select("name");
+            //var db = new QueryFactory(connection, new PostgresCompiler());
+            //var query = new Query("testclasses").Select("name");
 
-            var classNames = db.Get<string>(query).ToImmutableArray();
-            return classNames;
+            //var classNames = db.Get<string>(query).ToImmutableArray();
+            //return classNames;
 
-            //var classNames = new List<string> {"Test", "Fuck" };
-            //return classNames.ToImmutableArray();
+            var classNames = new List<string> { "Test", "Fuck" };
+            return classNames.ToImmutableArray();
         }
 
         //public GeneratedSource GenerateDataModelSource(string entityName)

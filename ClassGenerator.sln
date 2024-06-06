@@ -5,13 +5,19 @@ VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\DataModel.csproj", "{3E057D49-9C66-4B39-A59D-9CBD8BF09034}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel.Generator", "SourceGenerator\DataModel.Generator.csproj", "{923FD507-6482-49FE-91C9-7FD8F49BD524}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel.Generator", "DataModel.Generator\DataModel.Generator.csproj", "{923FD507-6482-49FE-91C9-7FD8F49BD524}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NhibernateAdapter", "NhibernateAdapter\NhibernateAdapter.csproj", "{EDC9BB5F-B0ED-439E-99A2-DE1BB6343936}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NhibernateAdapter.Generator", "NhibernateAdapter.Generator\NhibernateAdapter.Generator.csproj", "{A78E26ED-566A-4979-8374-04880486818C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NhibernateAdapter.Generator", "NhibernateAdapter.Generator\NhibernateAdapter.Generator.csproj", "{A78E26ED-566A-4979-8374-04880486818C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingApp", "TestingApp\TestingApp.csproj", "{F711B008-0225-4B38-A3BA-87D41E509F71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingApp", "TestingApp\TestingApp.csproj", "{F711B008-0225-4B38-A3BA-87D41E509F71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generators", "Generators", "{FCF1790C-45F0-474B-9564-9A605E28B46A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{18131ACE-2167-4BDB-B7AD-B82770F7B4E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{469AD14E-F781-4BEA-9DA1-632B393E0A14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +48,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E057D49-9C66-4B39-A59D-9CBD8BF09034} = {18131ACE-2167-4BDB-B7AD-B82770F7B4E0}
+		{923FD507-6482-49FE-91C9-7FD8F49BD524} = {FCF1790C-45F0-474B-9564-9A605E28B46A}
+		{EDC9BB5F-B0ED-439E-99A2-DE1BB6343936} = {18131ACE-2167-4BDB-B7AD-B82770F7B4E0}
+		{A78E26ED-566A-4979-8374-04880486818C} = {FCF1790C-45F0-474B-9564-9A605E28B46A}
+		{F711B008-0225-4B38-A3BA-87D41E509F71} = {469AD14E-F781-4BEA-9DA1-632B393E0A14}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8F9FB33D-9BAC-405F-B508-E3EB7565C341}

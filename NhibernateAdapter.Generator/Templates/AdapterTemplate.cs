@@ -14,9 +14,9 @@ using NHibernate.Tool.hbm2ddl;
 using GeneratedClasses;
 using GeneratedMappings;
 
-namespace NhibernateAdapterTEST
+namespace NhibernateAdapter
 {{
-    public static class NhibernateAdapter
+    public static class NhibernateGeneratedAdapter
     {{
         public static Configuration _NHConfiguration;
         public static ISessionFactory _sessionFactory;

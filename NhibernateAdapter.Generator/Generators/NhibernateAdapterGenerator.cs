@@ -1,7 +1,12 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using NhibernateAdapter.Generator.Templates;
+using Npgsql;
+using SqlKata;
+using SqlKata.Compilers;
+using SqlKata.Execution;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace NhibernateAdapter.Generator.Generators
@@ -15,12 +20,12 @@ namespace NhibernateAdapter.Generator.Generators
                 context.AnalyzerConfigOptionsProvider,
                 (sourceProductionContext, optionsProvider) =>
                 {
-                    //GET THEM FROM SOMEWHERE -> DATAMODEL
-                    var classNames = new List<string>() { "Animal", "Application", "Building", "Image"};
+                    string connectionString = "Host=localhost;Port=5432;Database=pgtestdata;Username=postgres;Password=password";
+                    var classNames = GetClassNamesFromDatabase(connectionString);
 
                     var adapterSource = GenerateAdapterSource(classNames);
                     sourceProductionContext.AddSource(
-                        $"NhibernateAdapter.cs",
+                        $"NhibernateGeneratedAdapter.cs",
                         SourceText.From(adapterSource, Encoding.UTF8));
                 });
         }
@@ -111,7 +116,7 @@ namespace NhibernateAdapter.Generator.Generators
             foreach (var className in classNames)
             {
                 testDataString.Append(
-                    $@"var {className.ToLower()} = new List<{className}>()
+                    $@"var {className.ToLower()}s = new List<{className}>()
             {{
                 new {className} {{ Id=1 }},
                 new {className} {{ Id=2 }},
@@ -166,6 +171,19 @@ namespace NhibernateAdapter.Generator.Generators
             ");
             }
             return testDataPopulatingString.ToString();
+        }
+
+        private List<string> GetClassNamesFromDatabase(string connectionString)
+        {
+            using var connection = new NpgsqlConnection(connectionString);
+            connection.Open();
+
+            var db = new QueryFactory(connection, new PostgresCompiler());
+            var query = new Query("testclasses").Select("name");
+
+            var classNames = db.Get<string>(query).ToList();
+
+            return classNames;
         }
     }
 }

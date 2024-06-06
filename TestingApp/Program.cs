@@ -1,9 +1,9 @@
-﻿NhibernateAdapter.NhibernateAdapter.SetupNhibernate();
-NhibernateAdapter.NhibernateAdapter.CreateDatabaseSchema();
-if (NhibernateAdapter.NhibernateAdapter.ValidateSchema())
+﻿NhibernateAdapter.NhibernateGeneratedAdapter.SetupNhibernate();
+NhibernateAdapter.NhibernateGeneratedAdapter.CreateDatabaseSchema();
+if (NhibernateAdapter.NhibernateGeneratedAdapter.ValidateSchema())
 {
-    NhibernateAdapter.NhibernateAdapter.PopulateTestData();
+    NhibernateAdapter.NhibernateGeneratedAdapter.PopulateTestData();
 
-    NhibernateAdapter.NhibernateAdapter.Test();
+    NhibernateAdapter.NhibernateGeneratedAdapter.Test();
 }
 

@@ -5,7 +5,6 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<LangVersion>latest</LangVersion>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-		
 	</PropertyGroup>
 
 	<ItemGroup>

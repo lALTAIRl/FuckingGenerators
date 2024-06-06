@@ -398,16 +398,4 @@ Cake/tools
 !Maps/Logs
 !*/Entities/Logs
 
-#ENV files
-.env
-/MPX8.Loader.Saxo/Store/FIX.4.4-MD_SAXO_18274859-SAXO_MD.body
-/MPX8.Loader.Saxo/Store/FIX.4.4-MD_SAXO_18274859-SAXO_MD.header
-/MPX8.Loader.Saxo/Store/FIX.4.4-MD_SAXO_18274859-SAXO_MD.seqnums
-/MPX8.Loader.Saxo/Store/FIX.4.4-MD_SAXO_18274859-SAXO_MD.session
-/MPX8.Loader.FXCM/Store/FIX.4.4-MD_skytat_client1-FXCM_CFD_U10R1.body
-/MPX8.Loader.FXCM/Store/FIX.4.4-MD_skytat_client1-FXCM_CFD_U10R1.header
-/MPX8.Loader.FXCM/Store/FIX.4.4-MD_skytat_client1-FXCM_CFD_U10R1.seqnums
-/MPX8.Loader.FXCM/Store/FIX.4.4-MD_skytat_client1-FXCM_CFD_U10R1.session
-
-#QuickFix folders 
-*/Store
+/DataModel/Generated

@@ -80,7 +80,7 @@ namespace GeneratedMappings
     {{
         public {className}Map()
         {{
-            Id<long>(x=> x.Id);
+            Id<long>(x => x.Id);
         }}
     }}
 }}

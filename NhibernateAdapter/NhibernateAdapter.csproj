@@ -17,7 +17,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\DataModel\DataModel.csproj" />
-		<ProjectReference Include="..\NhibernateAdapter.Generator\NhibernateAdapter.Generator.csproj" />
+		<ProjectReference Include="..\NhibernateAdapter.Generator\NhibernateAdapter.Generator.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer"/>
 	</ItemGroup>
 
 </Project>

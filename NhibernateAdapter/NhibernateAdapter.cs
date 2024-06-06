@@ -8,29 +8,23 @@ using NHibernate.Tool.hbm2ddl;
 using GeneratedClasses;
 using GeneratedMappings;
 
-namespace SourceGenNhibernateAdaptererator
+namespace NhibernateAdapter
 {
     public static class NhibernateAdapter
     {
         public static Configuration _NHConfiguration;
         public static ISessionFactory _sessionFactory;
+        
         public static void Test()
         {
-            SetupNhibernate();
-            CreateDatabaseSchema();
-            if (ValidateSchema())
+            using var session = _sessionFactory.OpenSession();
+            using var transaction = session.BeginTransaction();
+
+            var records = session.Query<Animal>().ToList();
+
+            foreach (var record in records)
             {
-                PopulateTestData();
-
-                using var session = _sessionFactory.OpenSession();
-                using var transaction = session.BeginTransaction();
-
-                var records = session.Query<Animal>().ToList();
-
-                foreach (var record in records)
-                {
-                    Console.WriteLine(record.Id);
-                }
+                Console.WriteLine(record.Id);
             }
         }
 

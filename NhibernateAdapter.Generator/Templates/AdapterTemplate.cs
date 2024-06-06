@@ -106,7 +106,6 @@ namespace NhibernateAdapterTEST
             using var transaction = session.BeginTransaction();
 
             {3}
-
             transaction.Commit();
         }}
     }}

@@ -54,7 +54,8 @@ namespace NhibernateAdapter.Generator.Generators
             var mappingString = new StringBuilder();
             foreach (var className in classNames)
             {
-                mappingString.Append($@"mapper.AddMapping<{className}Map>();");
+                mappingString.Append($@"mapper.AddMapping<{className}Map>();
+            ");
             }
             return mappingString.ToString();
         }
@@ -71,7 +72,8 @@ namespace NhibernateAdapter.Generator.Generators
             var typeofsString = new StringBuilder();
             foreach (var className in classNames)
             {
-                typeofsString.Append($@"typeof({className}),");
+                typeofsString.Append($@"typeof({className}),
+                ");
             }
             return typeofsString.ToString();
         }
@@ -115,7 +117,8 @@ namespace NhibernateAdapter.Generator.Generators
                 new {className} {{ Id=2 }},
                 new {className} {{ Id=3 }},
                 new {className} {{ Id=4 }},
-            }};");
+            }};
+            ");
             }
             return testDataString.ToString();
         }
@@ -159,7 +162,8 @@ namespace NhibernateAdapter.Generator.Generators
                     $@"foreach (var {className.ToLower()} in {className.ToLower()}s)
             {{
                 session.SaveOrUpdate({className.ToLower()});
-            }}");
+            }}
+            ");
             }
             return testDataPopulatingString.ToString();
         }
